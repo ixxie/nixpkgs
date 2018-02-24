@@ -402,6 +402,8 @@ in {
 
   pyunbound = callPackage ../tools/networking/unbound/python.nix { };
 
+  wordfreq = callPackage ../development/python-modules/wordfreq { };
+
   # packages defined here
 
   aafigure = callPackage ../development/python-modules/aafigure { };
