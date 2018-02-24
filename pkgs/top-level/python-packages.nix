@@ -251,6 +251,8 @@ in {
 
   lmtpd = callPackage ../development/python-modules/lmtpd { };
 
+  marisa-trie = callPackage ../development/python-modules/marisa-trie { };
+
   mpi4py = callPackage ../development/python-modules/mpi4py {
     mpi = pkgs.openmpi;
   };
