@@ -1,30 +1,27 @@
-
 { lib
 , buildPythonPackage
+, regex
+, langcodes
+, ftfy
+, msgpack
 , pythonOlder
-, fetchPypi
+, fetchFromGitHub
 }:
 
 buildPythonPackage rec {
   pname = "wordfreq";
-  version = "1.6.1";
+  version = "1.7.0";
 
-  src = fetchPypi {
-    inherit pname version;
-    sha256 = "0rx1h40qsdvgii28501dzs52rp5r6rpisrdayc7f1k1521rx47k7";
-  };
-
-  # No tests in archive
-  #doCheck = false;
+  src = /home/ixxie/wordfreq;
    
-  propagatedBuildInputs = [ ];
+  propagatedBuildInputs = [ regex langcodes ftfy msgpack ];
 
   disabled = pythonOlder "3.4";
 
   meta = with lib; {
-    description = "Authenticate JupyterHub users with common OAuth providers, including GitHub, Bitbucket, and more.";
-    homepage =  https://github.com/jupyterhub/oauthenticator;
-    license = licenses.bsd3;
+    description = "A Python library for looking up the frequencies of words in many languages, based on many sources of data.";
+    homepage =  https://github.com/LuminosoInsight/wordfreq/;
+    license = licenses.mit;
     maintainers = with maintainers; [ ixxie ];
   };
 }
