@@ -247,6 +247,8 @@ in {
 
   intelhex = callPackage ../development/python-modules/intelhex { };
 
+  langcodes = callPackage ../development/python-modules/langcodes { };
+
   lmtpd = callPackage ../development/python-modules/lmtpd { };
 
   mpi4py = callPackage ../development/python-modules/mpi4py {
