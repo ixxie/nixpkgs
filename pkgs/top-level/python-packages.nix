@@ -5201,6 +5201,8 @@ in {
 
   jupyterlab = callPackage ../development/python-modules/jupyterlab { };
 
+  jupyterlab_launcher = callPackage ../development/python-modules/jupyterlab_launcher { };
+    
   PyLTI = callPackage ../development/python-modules/pylti { };
 
   lmdb = buildPythonPackage rec {
