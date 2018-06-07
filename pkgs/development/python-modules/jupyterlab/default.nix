@@ -1,23 +1,61 @@
 { lib
 , buildPythonPackage
-, fetchurl
+, fetchPypi
 , notebook
+, jupyterlab_launcher
+, ipython_genutils
+, nodejs
+, pandas
+, ipywidgets
+, futures
+, subprocess32
+, pythonOlder
+, pytest
+, requests
+, pytest_check_links
+, selenium
 }:
 
 buildPythonPackage rec {
-  name = "jupyterlab-${version}";
-  version = "0.4.1";
+  pname = "jupyterlab";
+  version = "0.32.1";
 
-  src = fetchurl {
-    url = "mirror://pypi/j/jupyterlab/${name}.tar.gz";
-    sha256 = "91dc4d7dfb1e6ab97e28d6e3a2fc38f5f65d368201c00fd0ed077519258e67bb";
+  src = fetchPypi {
+    inherit pname version;
+    sha256 = "0m3m0wq71by9k4ldblsf2jcvvdgkhg17w99sj7pkhbnvl9b0cac8";
   };
+  
+  propagatedBuildInputs = [
+    jupyterlab_launcher
+    notebook
+    ipython_genutils
+    nodejs
+    ipywidgets
+    pandas
+  ] ++ (
+    if pythonOlder "3.0"
+    then [
+      futures
+      subprocess32
+      ]
+    else []
+  );
 
-  propagatedBuildInputs = [ notebook ];
+  checkInputs = [
+    pytest
+    requests
+    pytest_check_links
+    selenium
+  ];
+  
+  doCheck = true;
 
-  # No tests in archive
-  doCheck = false;
-
+  checkPhase = ''
+    mkdir ./tmp-home
+    export HOME=./tmp-home
+    pytest
+  '';
+  
   meta = with lib; {
     description = "Jupyter lab environment notebook server extension.";
     license = [ licenses.bsd3 ];
