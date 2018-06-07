@@ -386,6 +386,8 @@ in {
 
   pytest-tornado = callPackage ../development/python-modules/pytest-tornado { };
 
+  pytest_check_links = callPackage ../development/python-modules/pytest_check_links { };
+    
   python-sql = callPackage ../development/python-modules/python-sql { };
 
   python-stdnum = callPackage ../development/python-modules/python-stdnum { };
